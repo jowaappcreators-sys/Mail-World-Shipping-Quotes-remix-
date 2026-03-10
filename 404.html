@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Mail World Office Ship Quote</title>
+    <script type="text/javascript">
+      // This script takes the current URL (which caused a 404) 
+      // and redirects the browser to the root index.html with the original path/query.
+      // This prevents "404 Not Found" on shared test links.
+      var segmentCount = 0;
+      var l = window.location;
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        l.pathname.split('/').slice(0, 1 + segmentCount).join('/') + '/?p=/' +
+        l.pathname.slice(1).split('/').join('~and~') +
+        (l.search ? '&q=' + l.search.slice(1).split('&').join('~and~') : '') +
+        l.hash
+      );
+    </script>
+  </head>
+  <body>
+    Redirecting to Shipping Hub...
+  </body>
+</html>

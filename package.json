@@ -1,0 +1,56 @@
+{
+  "name": "mail-world-office-ship-quote",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Professional Shipping Quote Hub for Mail World Office Ship Quote",
+  "main": "server.ts",
+  "scripts": {
+    "dev": "tsx server.ts",
+    "build": "vite build",
+    "start": "tsx server.ts",
+    "preview": "vite preview",
+    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+  },
+  "keywords": [
+    "shipping",
+    "fedex",
+    "ups",
+    "dhl",
+    "stripe"
+  ],
+  "author": "Mail World Office Ship Quote",
+  "license": "MIT",
+  "dependencies": {
+    "@google/genai": "^1.42.0",
+    "@types/express": "^5.0.6",
+    "clsx": "^2.1.1",
+    "d3": "^7.9.0",
+    "express": "^5.2.1",
+    "lucide-react": "^0.575.0",
+    "motion": "^12.34.2",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-markdown": "^10.1.0",
+    "recharts": "^3.7.0",
+    "tailwind-merge": "^3.5.0",
+    "tsx": "^4.21.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.2.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@typescript-eslint/eslint-plugin": "^8.56.0",
+    "@typescript-eslint/parser": "^8.56.0",
+    "@vitejs/plugin-react": "^5.1.4",
+    "autoprefixer": "^10.4.24",
+    "eslint": "^9.39.2",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.5.0",
+    "globals": "^17.3.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.2.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.0",
+    "vite": "^7.3.1"
+  }
+}

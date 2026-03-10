@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: mail-world-office-ship-quote
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 20
+      - key: PORT
+        value: 3000
