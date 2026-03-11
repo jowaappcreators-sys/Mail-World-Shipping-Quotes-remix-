@@ -251,7 +251,11 @@ export const translations = {
     lastSync: 'Last Sync',
     operational: 'Operational',
     connected: 'Connected',
-    justNow: 'Just Now'
+    justNow: 'Just Now',
+    sharePayment: 'Share Payment',
+    paymentLinkNotConfigured: 'Payment link not configured in Admin.',
+    summaryCopied: 'Summary and link copied to clipboard.',
+    payHere: 'Pay here'
   },
   es: {
     appName: 'Mail World Office Ship Quote',
@@ -504,6 +508,10 @@ export const translations = {
     lastSync: 'Última Sincronización',
     operational: 'Operativo',
     connected: 'Conectado',
-    justNow: 'Ahora Mismo'
+    justNow: 'Ahora Mismo',
+    sharePayment: 'Compartir Pago',
+    paymentLinkNotConfigured: 'Enlace de pago no configurado en Admin.',
+    summaryCopied: 'Resumen y enlace copiados al portapapeles.',
+    payHere: 'Pague aquí'
   }
 };

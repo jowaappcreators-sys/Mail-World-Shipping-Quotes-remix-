@@ -11,6 +11,7 @@ interface QuoteResultsProps {
   onPurchaseLabel: (quote: CarrierQuote, pickupFee: number, fulfillment: 'DROP_OFF' | 'PICKUP', email: string, pickupAddress?: string) => void;
   isSaved?: boolean;
   language: Language;
+  paymentLink?: string;
 }
 
 const VectorLogo: React.FC<{ size?: string; color?: string }> = ({ size = "w-12 h-12", color = "text-blue-600" }) => (
@@ -24,13 +25,14 @@ const VectorLogo: React.FC<{ size?: string; color?: string }> = ({ size = "w-12 
   </div>
 );
 
-const QuoteResults: React.FC<QuoteResultsProps> = ({ quotes, details, onSave, onPurchaseLabel, isSaved, language }) => {
+const QuoteResults: React.FC<QuoteResultsProps> = ({ quotes, details, onSave, onPurchaseLabel, isSaved, language, paymentLink }) => {
   const [fulfillmentType, setFulfillmentType] = useState<'DROP_OFF' | 'PICKUP'>('DROP_OFF');
   const [isTulsaRadius, setIsTulsaRadius] = useState<boolean>(true);
   const [userEmail, setUserEmail] = useState<string>('');
   const [pickupAddress, setPickupAddress] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
   const [shake, setShake] = useState(false);
+  const [copiedLink, setCopiedLink] = useState(false);
   const t = translations[language];
 
   const [quoteRef] = useState(() => Math.floor(Date.now() / 100000).toString().slice(-6));
@@ -69,6 +71,29 @@ const QuoteResults: React.FC<QuoteResultsProps> = ({ quotes, details, onSave, on
     }, 150);
   };
 
+  const handleSharePayment = () => {
+    if (!paymentLink) {
+      alert(t.paymentLinkNotConfigured);
+      return;
+    }
+
+    const summary = sortedQuotes.map(q => `${q.carrier} (${q.serviceName}): $${q.finalPrice}`).join('\n');
+    const message = `${t.appName} - ${t.quoteHub}\n\n${t.shippingOrigin}: ${details.from.city}\n${t.destination}: ${details.to.city}\n\n${summary}\n\n${t.payHere}: ${paymentLink}`;
+    
+    if (navigator.share) {
+      navigator.share({
+        title: t.appName + ' Quote',
+        text: message,
+        url: paymentLink
+      }).catch(console.error);
+    } else {
+      navigator.clipboard.writeText(message);
+      setCopiedLink(true);
+      setTimeout(() => setCopiedLink(false), 2000);
+      alert(t.summaryCopied);
+    }
+  };
+
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* Action Bar */}
@@ -92,6 +117,14 @@ const QuoteResults: React.FC<QuoteResultsProps> = ({ quotes, details, onSave, on
               {t.saveRecord}
             </button>
           )}
+          <div className="h-8 w-px bg-gray-100 mx-2 hidden sm:block"></div>
+          <button 
+            onClick={handleSharePayment} 
+            className={`px-6 py-3 rounded-xl text-white text-xs font-black uppercase tracking-widest transition-all active:scale-95 flex items-center gap-2 ${copiedLink ? 'bg-emerald-500' : 'bg-brand hover:bg-brand-dark'}`}
+          >
+            <i className={`fas ${copiedLink ? 'fa-check' : 'fa-share-nodes'}`}></i>
+            {t.sharePayment}
+          </button>
           <div className="h-8 w-px bg-gray-100 mx-2 hidden sm:block"></div>
           <button onClick={handlePrint} title={t.printQuote} className="w-12 h-12 bg-blue-50 hover:bg-blue-100 rounded-xl text-blue-600 flex items-center justify-center transition-colors border border-blue-100">
             <i className="fas fa-print"></i>

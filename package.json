@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "type": "module",
   "description": "Professional Shipping Quote Hub for Mail World Office Ship Quote",
-  "main": "server.ts",
+  "main": "index.html",
   "scripts": {
-    "dev": "tsx server.ts",
+    "dev": "vite",
     "build": "vite build",
-    "start": "NODE_ENV=production tsx server.ts",
     "preview": "vite preview",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
@@ -22,10 +21,8 @@
   "license": "MIT",
   "dependencies": {
     "@google/genai": "^1.42.0",
-    "@types/express": "^5.0.6",
     "clsx": "^2.1.1",
     "d3": "^7.9.0",
-    "express": "^5.2.1",
     "lucide-react": "^0.575.0",
     "motion": "^12.34.2",
     "react": "^19.2.4",

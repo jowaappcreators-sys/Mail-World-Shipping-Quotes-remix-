@@ -285,6 +285,20 @@ const AdminPage: React.FC<AdminPageProps> = ({ transactions, branding, onUpdateB
               </div>
 
               <div className="space-y-3">
+                <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">{t.sharePayment} Link</label>
+                <input 
+                  type="text"
+                  value={editBranding.paymentLink}
+                  onChange={(e) => setEditBranding({...editBranding, paymentLink: e.target.value})}
+                  className="w-full bg-gray-50 border-2 border-gray-100 rounded-[1.5rem] px-6 py-5 font-black uppercase tracking-tight outline-none focus:border-gray-900 transition-all shadow-inner"
+                  placeholder="https://buy.stripe.com/..."
+                />
+                <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest ml-1">
+                  {language === 'es' ? 'Cree un "Payment Link" en su tablero de Stripe y péguelo aquí.' : 'Create a "Payment Link" in your Stripe dashboard and paste it here.'}
+                </p>
+              </div>
+
+              <div className="space-y-3">
                 <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">{t.brandSignatureColor}</label>
                 <div className="flex items-center space-x-6 bg-gray-50 p-4 rounded-[1.5rem] border border-gray-100 shadow-inner">
                   <input 

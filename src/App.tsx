@@ -21,6 +21,7 @@ export interface AppBranding {
   phone: string;
   ownerEmail: string;
   stripeKey: string;
+  paymentLink: string;
 }
 
 const BrandLogo: React.FC<{ size?: string; className?: string }> = ({ size = "w-8 h-8", className = "" }) => (
@@ -54,7 +55,8 @@ const App: React.FC = () => {
       primaryColor: import.meta.env.VITE_BRAND_COLOR || '#2563eb',
       phone: import.meta.env.VITE_BRAND_PHONE || '918-555-0123',
       ownerEmail: import.meta.env.VITE_BRAND_EMAIL || 'admin@mailworldoffice.com',
-      stripeKey: import.meta.env.VITE_STRIPE_PUBLIC_KEY || 'pk_test_51SqjUNL673JawjPASL6whpFNe6eQLqf9oXIlsHr5LiIGXzprz1yvLz61aZKhoTekgIuM5kStsM4ZUBo6eoqv032B00qfpZ60Be'
+      stripeKey: import.meta.env.VITE_STRIPE_PUBLIC_KEY || 'pk_test_51SqjUNL673JawjPASL6whpFNe6eQLqf9oXIlsHr5LiIGXzprz1yvLz61aZKhoTekgIuM5kStsM4ZUBo6eoqv032B00qfpZ60Be',
+      paymentLink: import.meta.env.VITE_STRIPE_PAYMENT_LINK || 'https://buy.stripe.com/test_6oE7v95p9'
     };
     const stored = localStorage.getItem('appBranding');
     if (stored) {
@@ -551,7 +553,7 @@ const App: React.FC = () => {
                 )}
                 {currentQuotes && currentView === View.DASHBOARD && (
                   <div className="mt-0">
-                    <QuoteResults quotes={currentQuotes} details={lastDetails!} onSave={() => saveQuoteToHistory(currentQuotes, lastDetails!)} onPurchaseLabel={(quote, fee, fulfillment, email, address) => initiateCheckout('label', quote, fee, fulfillment, email, address)} isSaved={!!activeQuoteId && !!quoteHistory.find(q => q.id === activeQuoteId)} language={language} />
+                    <QuoteResults quotes={currentQuotes} details={lastDetails!} onSave={() => saveQuoteToHistory(currentQuotes, lastDetails!)} onPurchaseLabel={(quote, fee, fulfillment, email, address) => initiateCheckout('label', quote, fee, fulfillment, email, address)} isSaved={!!activeQuoteId && !!quoteHistory.find(q => q.id === activeQuoteId)} language={language} paymentLink={branding.paymentLink} />
                     <button onClick={goHome} className="mt-8 text-gray-400 hover:text-brand font-bold text-xs uppercase tracking-widest flex items-center gap-2 no-print transition-all">
                       <i className="fas fa-arrow-left"></i> {t.returnDashboard}
                     </button>
